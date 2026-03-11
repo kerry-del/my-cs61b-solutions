@@ -5,6 +5,17 @@ public class StarTriangleN {
      */
    public static void starTriangle(int N) {
       // TODO: Fill in this function
+      for(int i=1;i<N+1;i++){
+         if(i!=N){
+            for(int j=N-i;j>0;j--){
+               System.out.print(" ");
+            }
+         }
+         for(int k=0;k<i;k++){
+            System.out.print("*");
+         }
+         System.out.print("\n");
+      }
    }
    
    public static void main(String[] args) {

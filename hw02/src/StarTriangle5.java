@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class StarTriangle5 {
    /**
      * Prints a right-aligned triangle of stars ('*') with 5 lines.
@@ -5,6 +7,17 @@ public class StarTriangle5 {
      */
    public static void starTriangle5() {
       // TODO: Fill in this function
+      for(int i=1;i<6;i++){
+         if(i!=5){
+            for(int j=5-i;j>0;j--){
+               System.out.print(" ");
+            }
+         }
+         for(int k=0;k<i;k++){
+            System.out.print("*");
+         }
+         System.out.print("\n");
+      }
    }
    
    public static void main(String[] args) {
