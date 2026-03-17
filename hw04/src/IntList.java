@@ -26,6 +26,18 @@ public class IntList {
         return totalSize;
     }
 
+    public int iterativeGet(IntList L,int i){
+        if(i==0){
+            return first;
+        }
+        IntList p= L;
+        for(int m=1;m<=i;m++){
+            p=p.rest;
+        }
+        return p.first;
+
+    }
+
     /** Returns the ith item of this IntList. */
     public int get(int i) {
         if (i == 0) {
@@ -43,7 +55,10 @@ public class IntList {
      */
     public static IntList incrRecursiveNondestructive(IntList L, int x) {
         // TODO: Fill in this code
-        return null;
+        if(L==null){
+            return null;
+        }
+        return new IntList(L.first+x,incrRecursiveNondestructive(L.rest,x));
     }
 
     /**
@@ -53,7 +68,12 @@ public class IntList {
      */
     public static IntList incrRecursiveDestructive(IntList L, int x) {
         // TODO: Fill in this code
-        return null;
+        if(L==null){
+            return null;
+        }
+        L.first=L.first+x;
+        incrRecursiveDestructive(L.rest,x);
+        return L;
     }
 
     /**
@@ -63,7 +83,26 @@ public class IntList {
      */
     public static IntList incrIterativeNondestructive(IntList L, int x) {
         // TODO: Fill in this code
-        return null;
+        if(L==null){
+            return null;
+        }
+        IntList newList = new IntList(L.first+x,null );
+        IntList p = newList;
+        for(int i=1;i<L.iterativeSize();i++){
+            p.rest = new IntList(L.iterativeGet(L,i)+x,null);
+            p = p.rest;
+        }
+        return newList;
+        /*双指针链表解法
+        IntList ptr = L.rest;
+        IntList tail = newList;
+        while(p!=null){
+        tail.rest = new IntList(ptr.first+x,null);
+        tail = tail.rest;
+        ptr = ptr.rest;
+        }
+
+        */
     }
 
     /**
@@ -74,7 +113,13 @@ public class IntList {
      */
     public static IntList incrIterativeDestructive(IntList L, int x) {
         // TODO: Fill in this code
-        return null;
+        L.first =L.iterativeGet(L,0)+x;
+        IntList p =L.rest;
+        for(int i=1;i<L.iterativeSize();i++){
+            p.first =L.iterativeGet(L,i)+x;
+            p=p.rest;
+        }
+        return L;
     }
 
     /**
@@ -83,7 +128,23 @@ public class IntList {
      */
     public static IntList concatenate(IntList L1, IntList L2) {
         // TODO: Fill in this code
-        return null;
+        if(L1==null){
+            return L2;
+        }
+        if(L2==null){
+            return L1;
+        }
+        IntList newList = new IntList(L1.first,null);
+        IntList p = newList;
+        for(int i=1;i<L1.size();i++){
+            p.rest = new IntList(L1.get(i),null);
+            p = p.rest;
+        }
+        for(int i=0;i<L2.size();i++){
+            p.rest = new IntList(L2.get(i),null);
+            p = p.rest;
+        }
+        return newList;
     }
 
     /*
